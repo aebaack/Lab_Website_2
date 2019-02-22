@@ -70,6 +70,10 @@ const changeColor = color => document.body.style.backgroundColor = color;
 */
 
 function loadStatsPage() {
+	// Variables for tracking stats
+	let wins = 0;
+	let losses = 0;
+
 	// Traverse elements in table
 	const table = document.getElementById('stats_table');
 	for (let i = 2; i < table.rows.length; i++) {
@@ -78,8 +82,17 @@ function loadStatsPage() {
 		const homeScore = parseInt(table.rows[i].cells[2].innerHTML);
 		const oppScore = parseInt(table.rows[i].cells[3].innerHTML);
 		
-		// Add winner name to cell
-		table.rows[i].cells[4].innerHTML = homeScore > oppScore ? 'CU Boulder' : oppTeamName;
+		if (homeScore > oppScore) { // Win
+			table.rows[i].cells[4].innerHTML = 'CU Boulder';
+			wins++;
+		} else { // Loss
+			table.rows[i].cells[4].innerHTML = oppTeamName;
+			losses++;
+		}
+		
+		// Add wins and losses
+		document.getElementById('wins').innerHTML = wins;
+		document.getElementById('losses').innerHTML = losses;
 	}
 }
 
