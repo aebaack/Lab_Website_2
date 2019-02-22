@@ -35,9 +35,24 @@ var players = [{name:"John Doe", img: "../resources/img/player1.jpg", alt:"Image
 */
 
 function viewStudentStats(id, toggle) {
+	// Get element and change visibility and height depending on toggle
 	const element = document.getElementById(id);
 	element.style.visibility = toggle ? 'visible' : 'hidden';
 	element.style.height = toggle ? 'auto' : 0;
+
+	// Solves a bug where the dropdown will continue to display after hiding
+	if (id === 'student_status' && toggle === 0) {
+		// Hide both dropdowns when student status is unselected
+		viewStudentStats('undergrad_select', 0);
+		viewStudentStats('grad_select', 0);
+	} else if (id === 'student_status' && toggle === 1) {
+		// Redisplay the proper dropdown when student status is selected again
+		if (document.getElementById('undergrad').checked) { // Undergrad checked
+			viewStudentStats('undergrad_select', 1);
+		} else if (document.getElementById('graduate').checked) { // Grad selected
+			viewStudentStats('grad_select', 1);
+		}
+	}
 }
 
 /*
