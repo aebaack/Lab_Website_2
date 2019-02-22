@@ -69,7 +69,19 @@ const changeColor = color => document.body.style.backgroundColor = color;
 						4. Update the second table to show the total number of wins/losses for the Buffs.
 */
 
-
+function loadStatsPage() {
+	// Traverse elements in table
+	const table = document.getElementById('stats_table');
+	for (let i = 2; i < table.rows.length; i++) {
+		// Get necessary information from cells
+		const oppTeamName = table.rows[i].cells[1].innerHTML;
+		const homeScore = parseInt(table.rows[i].cells[2].innerHTML);
+		const oppScore = parseInt(table.rows[i].cells[3].innerHTML);
+		
+		// Add winner name to cell
+		table.rows[i].cells[4].innerHTML = homeScore > oppScore ? 'CU Boulder' : oppTeamName;
+	}
+}
 
 /*
 	Football Player Information Page
