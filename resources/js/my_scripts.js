@@ -35,9 +35,9 @@ var players = [{name:"John Doe", img: "../resources/img/player1.jpg", alt:"Image
 */
 
 function viewStudentStats(id, toggle) {
-	const element = document.getElementById(id)
-	element.style.visibility = toggle ? 'visible' : 'hidden'
-	element.style.height = toggle ? 'auto' : 0
+	const element = document.getElementById(id);
+	element.style.visibility = toggle ? 'visible' : 'hidden';
+	element.style.height = toggle ? 'auto' : 0;
 }
 
 /*
@@ -50,6 +50,7 @@ function viewStudentStats(id, toggle) {
 					 provided parameter.
 */
 
+const changeColor = color => document.body.style.backgroundColor = color;
 
 /*
 	Football Season Stats Page:
@@ -67,6 +68,8 @@ function viewStudentStats(id, toggle) {
 						
 						4. Update the second table to show the total number of wins/losses for the Buffs.
 */
+
+
 
 /*
 	Football Player Information Page
