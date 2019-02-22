@@ -147,10 +147,36 @@ function loadPlayersPage() {
 	players.forEach((player, i) => {
 		const anchor = document.createElement('a');
 		anchor.href = "#";
-		anchor.onclick = `switchPlayers(${i})`;
-		anchor.innerHTML = player.name + '<br>';
+		anchor.onclick = () => switchPlayers(i);
+		anchor.classList.add('btn');
+		anchor.innerHTML = player.name;
 
 		// Add player name to dropdown
 		dropdown.appendChild(anchor);
 	});
+}
+
+function switchPlayers(playerNum) {
+	// Find player information
+	const player = players[playerNum];
+
+	// Update HTML to display information
+	document.getElementById('p_year').innerHTML = player.year;
+	document.getElementById('p_major').innerHTML = player.major;
+	document.getElementById('g_played').innerHTML = player.games_played;
+	document.getElementById('player_img').src = player.img;
+	document.getElementById('player_img').alt = player.alt;
+	document.getElementById('p_yards').innerHTML = player.pass_yards;
+	document.getElementById('r_yards').innerHTML = player.rushing_yards;
+	document.getElementById('rec_yards').innerHTML = player.receiving_yards;
+
+	// Calculate average values
+	const avgPass = (player.pass_yards / player.games_played).toFixed(2);
+	const avgRush = (player.rushing_yards / player.games_played).toFixed(2);
+	const avgRec = (player.receiving_yards / player.games_played).toFixed(2);
+
+	// Add average values to page
+	document.getElementById('avg_p_yards').innerHTML = avgPass;
+	document.getElementById('avg_r_yards').innerHTML = avgRush;
+	document.getElementById('avg_rec_yards').innerHTML = avgRec;
 }
