@@ -139,4 +139,18 @@ function loadStatsPage() {
 					  avg_rec_yards - the average number of receiving yards for the player's Buff career
 */
 				
+function loadPlayersPage() {
+	// Get id of player dropdown
+	const dropdown = document.getElementById('player_selector');
 
+	// Create an anchor tag for each player
+	players.forEach((player, i) => {
+		const anchor = document.createElement('a');
+		anchor.href = "#";
+		anchor.onclick = `switchPlayers(${i})`;
+		anchor.innerHTML = player.name + '<br>';
+
+		// Add player name to dropdown
+		dropdown.appendChild(anchor);
+	});
+}
